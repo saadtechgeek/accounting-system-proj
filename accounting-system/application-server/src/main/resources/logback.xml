@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="10 seconds">
+    <!-- The logging level for the console -->
+    <property name="CONSOLE_LEVEL" value="${CONSOLE_LEVEL:-INFO}"/>
+
+    <!-- The logging level for the log file -->
+    <property name="FILE_LEVEL" value="${LOG_LEVEL:-INFO}"/>
+
+    <!-- The location of the log file -->
+    <property name="FILE_DIR" value="${LOG_DIR:-./target/logs}"/>
+
+    <!-- The maximum size of a log file before it will be rolled -->
+    <property name="FILE_SIZE" value="${LOG_SIZE:-10MB}"/>
+
+    <!-- The minimum file index used for rolling. -->
+    <property name="FILE_MIN_INDEX" value="${LOG_MIN_INDEX:-1}"/>
+
+    <!-- The maximum file index used for rolling. -->
+    <property name="FILE_MAX_INDEX" value="${LOG_MAX_INDEX:-10}"/>
+
+    <!-- The log record pattern.
+         See http://logback.qos.ch/manual/layouts.html for more information. -->
+    <property name="pattern"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [%X{tenant:-N/A}] %logger{0} - %msg%n"/>
+
+    <!-- The console log configuration -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${pattern}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${CONSOLE_LEVEL}</level>
+        </filter>
+
+        <!-- PostgreSQL doesn't support setting the ClientInfo or specific
+             oracle stored procedures that we execute whenever a connection
+             is grabbed from the pool, so filter out these messages. -->
+        <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+            <evaluator>
+                <expression>
+                    return
+                        (message.contains("ClientInfo property not supported.") ||
+                         message.contains("SQL Warning Code: 0, SQLState: 0A000"));
+                </expression>
+            </evaluator>
+            <OnMatch>DENY</OnMatch>
+            <OnMismatch>NEUTRAL</OnMismatch>
+        </filter>
+    </appender>
+
+    <!-- The log file configuration.  In this configuration we are rolling
+         based on size of the file, which by default is 10MB.  Once rolled
+         its configured to automatically zip the older log file. -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${FILE_DIR}/realxdata.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${pattern}</pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>
+                ${FILE_DIR}/realxdata.%i.log.zip
+            </fileNamePattern>
+            <minIndex>${FILE_MIN_INDEX}</minIndex>
+            <maxIndex>${FILE_MAX_INDEX}</maxIndex>
+        </rollingPolicy>
+
+        <triggeringPolicy
+            class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>${FILE_SIZE}</maxFileSize>
+        </triggeringPolicy>
+
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${FILE_LEVEL}</level>
+        </filter>
+
+        <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+            <evaluator>
+                <expression>
+                    return
+                        (message.contains("ClientInfo property not supported.") ||
+                         message.contains("SQL Warning Code: 0, SQLState: 0A000"));
+                </expression>
+            </evaluator>
+            <OnMatch>DENY</OnMatch>
+            <OnMismatch>NEUTRAL</OnMismatch>
+        </filter>
+    </appender>
+
+    <!-- Override logger levels -->
+    <logger name="com" level="INFO" />
+    <logger name="org" level="INFO" />
+    <logger name="java" level="INFO" />
+    <logger name="javax" level="INFO" />
+    
+    <!-- ### log just the SQL ### -->
+    <logger name="org.hibernate.SQL" level="DEBUG"/>
+
+    <!-- ### log JDBC bind parameters ### -->
+    <logger name="org.hibernate.type" level="TRACE"/>
+
+    <logger name="org.hibernate.tool.hbm2ddl" level="DEBUG"/>
+
+    <!-- Set preferred level for primatics stuff. -->
+    <logger name="com.primatics.analytics" level="INFO" />
+
+    <!-- Setting the root level of logging to INFO -->
+    <root level="TRACE">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+    </root>
+</configuration>

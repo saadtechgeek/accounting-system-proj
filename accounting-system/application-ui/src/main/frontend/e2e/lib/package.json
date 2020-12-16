@@ -1,0 +1,9 @@
+{
+    "name": "my-kid-goals",
+    "description": "account-managements ui",
+    "main": "index.js",
+    "module": "index.js",
+    "types": "index.d.ts",
+    "version": "0.0.1"
+}
+

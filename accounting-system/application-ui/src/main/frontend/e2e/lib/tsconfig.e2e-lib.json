@@ -1,0 +1,13 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "../../dist/account-management",
+        "module": "commonjs",
+        "declaration": true,
+        "target": "es5",
+        "strict": true
+    },
+    "include": [
+        "src/**/*"
+    ]
+}

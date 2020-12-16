@@ -1,0 +1,79 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="sshahid" id="accountmanagement-schema-0.0.1-1">
+        <createTable tableName="USER">
+            <column name="ID" type="BIGINT"  autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="USERNAME" type="VARCHAR(255)" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="PASSWORD" type="VARCHAR(256)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FULL_NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Role" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sshahid" id="accountmanagement-schema-0.0.1-2">
+        <createTable tableName="ACCOUNT_TYPE">
+            <column name="ID" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="NAME" type="VARCHAR(50)">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="sshahid" id="accountmanagement-schema-0.0.1-3">
+        <createTable tableName="ACCOUNT">
+            <column name="ID" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="ACCOUNTNUMBER" type="VARCHAR(100)">
+                <constraints nullable="false" />
+            </column>
+            <column name="TITLE" type="VARCHAR(100)">
+                <constraints nullable="false" />
+            </column>
+            <column name="FIRSTNAME" type="VARCHAR(150)"/>
+            <column name="LASTNAME" type="VARCHAR(150)"/>
+            <column name="GENDER" type="VARCHAR(10)"/>
+            <column name="ACCOUNTTYPEID" type="BIGINT" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="CRTD_BY" type="VARCHAR(100)"/>
+            <column name="CRTD_DATE" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+<!--   <changeSet author="sshahid" id="accountmanagement-schema-0.0.1-4">
+        <addForeignKeyConstraint baseColumnNames="ACCOUNTTYPEID"
+                                 baseTableName="ACCOUNT"
+                                 constraintName="FK_ACCOUNT_ACCOUNTTYPE"
+                                 referencedColumnNames="ID"
+                                 referencedTableName="ACCOUNT_TYPE"/>
+    </changeSet>-->
+
+    <changeSet author="sshahid" id="accountmanagement-schema-0.0.1-5">
+        <createTable tableName="USER_ACCOUNT">
+            <column name="ID" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="USERID" type="BIGINT" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="ACCOUNTID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+</databaseChangeLog>

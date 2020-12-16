@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        To make our Liquibase change logs database universal then we define
+        some properties for different database types here.
+      -->
+
+    <!-- MemSQL can't handle "DATETIME DEFAULT NOW()", however its cool with
+         "TIMESTAMP DEFAULT NOW()".  So we'll define a property for specifying
+         a timestamp column type. -->
+    <property name="timestamp" value="TIMESTAMP" dbms="mysql"/>
+
+    <!-- MySQL type databases have the current timestamp function as now()
+         while Oracle uses sysdate -->
+    <property name="now" value="now()" dbms="mysql"/>
+
+    <!--
+      Common data types.
+      Note: For MemSQL BOOL or BOOLEAN becomes BIT and it is always 0 so that
+            is why we are using TINYINT here to represent a boolean.
+      -->
+    <property name="booleanType" value="TINYINT"/>
+
+    <!-- Add in all the version change logs. -->
+    <include file="db/changelog/accountmanagement-schema-0.0.1.xml"/>
+</databaseChangeLog>

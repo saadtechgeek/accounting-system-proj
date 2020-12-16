@@ -1,0 +1,41 @@
+.header {
+  padding: 1em;
+  color: white;
+  background-color: #5e9dc0 !important;
+  margin-bottom: 1em;
+}
+
+h2 {
+  font-weight: bolder;
+  font-size: xx-large;
+  display: inline;
+}
+
+h3 {
+  font-weight: lighter;
+  font-size: xx-large;
+  display: inline;
+}
+
+p-dataTable > > > {
+  .ui-datatable-footer {
+    min-height: 60px;
+    input {
+      margin-left: 0.5em;
+      font-size: larger;
+      padding: 3px;
+    }
+    min-height: 60px;
+  }
+  .selectBoxColumn {
+    width: 43px;
+  }
+}
+
+p-contextMenu > > > .ui-menuitem-active a {
+  background-color: #F15B2A !important;
+}
+
+.center-align{
+  align:center !important;
+}

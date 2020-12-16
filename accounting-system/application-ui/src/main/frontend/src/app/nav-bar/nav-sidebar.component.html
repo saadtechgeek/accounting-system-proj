@@ -1,0 +1,70 @@
+<aside class="left-side sidebar-offcanvas">
+    <!-- sidebar: style can be found in sidebar-->
+    <section class="sidebar affix">
+        <div class="slim">
+            <div id="menu" class="menu_align" role="navigation">
+                <div class="nav_profile">
+                    <div class="media profile-left">
+                        <a class="pull-left profile-thumb" href="#">
+                            <img src="./assets/img/authors/avatar1.jpg" class="img-circle" alt="User Image"></a>
+                        <div class="content-profile">
+                            <h4 class="media-heading">Saad Shahid</h4>
+                        </div>
+                    </div>
+                </div>
+                <ul class="navigation">
+                    <li class="active" id="active">
+                        <a [routerLink]="['dashboard-admin']">
+                            <i class="menu-icon fa fa-fw fa-home"></i>
+                            <span class="mm-text ">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="menu-dropdown">
+                        <a href="#">
+                            <i class="menu-icon fa fa-fw fa-users"></i>
+                            <span>Accounts</span> <span class="fa arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="users.html">
+                                    <i class="fa fa-list" aria-hidden="true"></i> Account List
+                                </a>
+                            </li>
+                            <li>
+                                <a href="addnew_user.html">
+                                    <i class="fa fa-fw fa-user"></i> Create New Account
+                                </a>
+                            </li>
+                            <li>
+                                <a href="user_profile.html">
+                                    <i class="fa fa-fw fa-user-md"></i> View Account
+                                </a>
+                            </li>
+                            <li>
+                                <a href="deleted_users.html">
+                                    <i class="fa fa-fw fa-times"></i> Deleted Account
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-dropdown">
+                        <a href="#">
+                            <i class="menu-icon fa fa-fw fa-users"></i>
+                            <span>Users</span> <span class="fa arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a [routerLink]="['users']">
+                                    <i class="fa fa-list" aria-hidden="true"></i> Users List
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- / .navigation -->
+            </div>
+         </div>   
+        <!-- menu -->
+    </section>
+    <!-- /.sidebar -->
+</aside>

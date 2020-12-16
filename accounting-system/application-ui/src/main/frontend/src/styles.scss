@@ -1,0 +1,94 @@
+//@import "~primeng/resources/themes/bootstrap/theme.css";
+//@import "~primeng/resources/primeng.min.css";
+@import "~font-awesome/css/font-awesome.min.css";
+//@import "variables.scss";
+
+/*body .ui-state-active, body .ui-state-highlight{
+    background-color:$primaryColor !important;
+  }*/
+@font-face {
+  font-family: 'Latobold';
+  src: url('./assets/scss/fonts/lato-bold-webfont.eot');
+  src: url('./assets/scss/fonts/lato-bold-webfont.eot?#iefix') format("embedded-opentype"), url('./assets/scss/fonts/lato-bold-webfont.woff') format("woff"), url('./assets/scss/fonts/lato-bold-webfont.ttf') format("truetype"), url('./assets/scss/fonts/lato-bold-webfont.svg#latobold') format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Lato';
+  src: url('./assets/scss/fonts/lato-regular-webfont.eot');
+  src: url('./assets/scss/fonts/lato-regular-webfont.eot?#iefix') format("embedded-opentype"), url('./assets/scss/fonts/lato-regular-webfont.woff') format("woff"), url('./assets/scss/fonts/lato-regular-webfont.ttf') format("truetype"), url('./assets/scss/fonts/lato-regular-webfont.svg#latoregular') format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: 'Lato', sans-serif;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.text-wrap {
+  display:inline-block;
+  width:220px;
+  white-space: nowrap;
+  overflow:hidden !important;
+  text-overflow: ellipsis;
+}
+
+
+#bodywrapper {
+  min-width: 1280px !important;
+  height: max-content !important;
+  min-height: 400px !important;
+  max-height: 100% !important;
+}
+
+
+body .ui-datatable thead th.ui-state-active {
+  background-color: #5e9dc0;
+  border-color: #5e9dc0;
+  color: #ffffff;
+}
+
+body .ui-datatable thead th:focus.ui-state-active{
+  background-color: #5e9dc0;
+}
+body .ui-datatable .ui-paginator {
+  padding: 10px 0 16px;
+
+  .ui-paginator-pages {
+    padding: 0;
+    vertical-align: baseline;
+
+    .ui-paginator-page {
+      background-color:#006398 !important;
+      min-height: 2em;
+      line-height: inherit;
+        }
+    }
+}
+
+body .ui-datatable .ui-datatable-thead > tr > th.ui-state-default {
+  background-image:none;
+  background-color:#5e9dc0!important;
+  color:#FFF;
+  border-bottom: 1px solid #4b7e99 !important;
+} 
+
+body .ui-datatable .ui-datatable-data tr td.ui-editable-column input{
+  font-size:1em !important;
+  font-family: 'Lato', sans-serif !important;
+}
+
+.titleBar {
+  font-size: 18px !important;
+  color: #231f20;
+  font-weight: bold;
+  font-family: 'Latobold', sans-serif;
+  padding: 1px 0 2px 0px;
+  margin: 0 15px 20px 15px;
+  border-bottom: 1px solid lightgrey ;
+}

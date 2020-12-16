@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>account-management</artifactId>
+        <groupId>com.ingtech</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>schema-service</artifactId>
+    <packaging>jar</packaging>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
+
+        <!-- Generate resources {will convert all placeholders to values and placed it in target/test-classes -->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-recreate-test-user-sql</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <escapeString>\</escapeString>
+                            <outputDirectory>
+                                ${project.build.testOutputDirectory}
+                            </outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>
+                                        src/test/resources
+                                    </directory>
+                                    <filtering>true</filtering>
+                                    <includes>
+                                        <include>recreate-test-user.sql</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Recreate new user Plugin -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>sql-maven-plugin</artifactId>
+                <dependencies>
+                    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>5.1.6</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>execute-create-user</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <driver>${test.db.driver}</driver>
+                            <url>${test.db.url.server.only}</url>
+                            <username>${test.db.user}</username>
+                            <password>${test.db.password.decrypted}</password>
+                            <autocommit>true</autocommit>
+                            <srcFiles>
+                                <srcFile>
+                                    ${project.build.testOutputDirectory}/recreate-test-user.sql
+                                </srcFile>
+                            </srcFiles>
+                            <skip>${skipTests}</skip>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--Liquibase plugin-->
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <configuration>
+                    <driver>${test.db.driver}</driver>
+                    <url>${test.db.url}?useSSL=true</url>
+                    <username>${test.db.user}</username>
+                    <password>${test.db.password.decrypted}</password>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>install-realxdata-schema</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>update</goal>
+                        </goals>
+                        <configuration>
+                            <changeLogFile>
+                                ${project.build.outputDirectory}/db/changelog/schema-master.xml
+                            </changeLogFile>
+                            <promptOnNonLocalDatabase>
+                                false
+                            </promptOnNonLocalDatabase>
+                            <skip>${skipTests}</skip>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

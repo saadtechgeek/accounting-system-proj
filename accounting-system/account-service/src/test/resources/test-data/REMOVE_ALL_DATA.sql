@@ -1,0 +1,13 @@
+commit;
+delete from CLIENT_PROPERTY;
+delete from PROPERTY;
+delete from CLIENT_PERMISSION;
+delete from PERMISSION;
+delete from CLIENT_PRODUCT_LICENSE;
+delete from PRODUCT_LICENSE;
+delete from USER_ROLE;
+delete from ROLE;
+delete from ROLE_CATEGORY;
+delete from USER;
+delete from CLIENT;
+commit;

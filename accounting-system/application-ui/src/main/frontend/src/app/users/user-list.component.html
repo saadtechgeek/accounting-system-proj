@@ -1,0 +1,49 @@
+<h3 class="titleBar">User List</h3>
+<!--<evlng-spinnerizer [active]="loading" [text]="'Loading Users data...'"></evlng-spinnerizer>-->
+<p-growl [(value)]="this.userService.messages" [style]="{marginTop: '80px'}"></p-growl>
+<div *ngIf="loading==false">
+  <div class="row" style="margin-left:15px !important;padding-top: 20px!important;">
+    <div><b>Filter:</b></div>
+    <div class="col-sm-3">
+      <input id="tableSearch" class="textbox" #tableSearch type="text" placeholder="">
+    </div>
+  </div>
+  <p-dataTable #dt [value]="userList" class="ui-g-12" sortField="id" sortOrder="0" emptyMessage="No user entries found"
+    [reorderableColumns]="true" columnResizeMode="fit" [resizableColumns]="true" [globalFilter]="tableSearch"  [loading]="this.userService.gridLoader"
+    [paginator]="true" [rows]="10" rowIndexVar="index">
+    <p-column field="username" header="User Name" [sortable]="true" [style]="{'width':'25%'}">
+      <ng-template let-row="rowData" pTemplate type="body">
+          <ng-container *ngIf="!row.locked">
+            <a [routerLink]="['/segments', row.id, 'details']">{{row.username}}</a>
+          </ng-container>
+          <ng-container *ngIf="row.locked">
+            <a [routerLink]="['/segments', row.id, 'view']">{{row.username}}</a>
+          </ng-container>
+      </ng-template>
+    </p-column>
+    <p-column field="role" header="Role" [sortable]="true" [style]="{'width':'25%'}"></p-column>
+    <p-column field="fullName" header="Full Name" [style]="{'width':'25%'}"></p-column>
+    <p-column styleClass="col-button" [style]="{'width':'25%'}">
+      <ng-template pTemplate="header">
+          Actions
+      </ng-template>
+      <ng-template let-data="rowData" pTemplate="body">
+          <ng-container *ngIf='userService.canCreateAccount'>
+              <img src="../../assets/img/icons/icon-edit.png" title="Add Account" class='img-lg' style='margin-left: 30px;' (click)="navAddAccount(data);" alt="add action">
+          </ng-container>
+      </ng-template>
+    </p-column>
+  <!--  <p-footer>
+      <div class="row" style="margin-left: 0px !important;">
+        <div>
+          <span>
+            <a class="btn btn-sm navbar-btn btn-primary" title="Create New Segment" style="font-size:1em !important;width:70px;height:25px;margin-right:10px;"
+              [routerLink]="['/segments', 0, 'details']">
+              Add
+            </a>
+          </span>
+        </div>
+      </div>
+    </p-footer>-->
+  </p-dataTable>
+</div>

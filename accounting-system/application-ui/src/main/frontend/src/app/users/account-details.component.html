@@ -1,0 +1,103 @@
+<h3 class="titleBar">Account Details</h3>
+<!--<evlng-spinnerizer [active]="segmentService.loader && loading" [text]="'Loading User details...'"></evlng-spinnerizer>-->
+<p-growl [(value)]="userService.messages" [style]="{marginTop: '80px'}"></p-growl>
+<div>
+    <div class=" ui-g-13">
+        <div class="panel-body">
+            <ngx-loading [show]="loading1"></ngx-loading>
+           <form class="form-horizontal" novalidate #accountForm="ngForm">
+                <div class="form-group" [ngClass]="{'has-error': (titleVar.touched || firstNameVar.touched || lastNameVar.touched ) && 
+                                              (!titleVar.valid || !firstNameVar.valid || !lastNameVar.valid ) }">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="col-md-6" for="accountNumber">Account Number:</label>
+                            <input autocomplete="off" class="col-md-6 form-control textbox" id="accountNumber" type="text"
+                                [(ngModel)]=accountDetails.accountNumber name="accountNumber" disabled
+                                />
+                        </div>
+                        <div class="col-md-4">
+                                <label class="col-md-6" for="title">Title:<em>*</em>:</label>
+                                <input autocomplete="off" class="col-md-6 form-control textbox" id="title" type="text" required
+                                    [(ngModel)]=accountDetails.title name="title" #titleVar="ngModel"
+                                    />
+                                    <span class="col-md-8" *ngIf="(titleVar.touched || titleVar.dirty) && titleVar.errors">
+                                            <span *ngIf="titleVar.errors.required">
+                                                    <font color="red"> Account title is required.</font><br/>
+                                            </span>
+                                    </span>         
+                                    
+                        </div>
+                        <div class="col-md-4">
+                            <label class="col-md-6" for="accounttype">Account Type:<em>*</em>:</label>
+                            <select class="col-md-6 form-control textbox" id="accounttype">
+                                <!--<option >
+                                    Saving
+                                </option>
+                                <option>
+                                    Current
+                               </option>-->
+                               <option *ngFor="let prop of properties">
+                                    {{prop.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-md-4">
+                                <label class="col-md-6" for="firstName">First Name<em>*</em>:</label>
+                                <input autocomplete="off" class="col-md-6 form-control textbox" id="firstName" type="text" required
+                                    [(ngModel)]=accountDetails.firstName name="firstName" #firstNameVar="ngModel"
+                                    />
+                                    <span class="col-md-8" *ngIf="(firstNameVar.touched || firstNameVar.dirty) && firstNameVar.errors">
+                                            <span *ngIf="firstNameVar.errors.required">
+                                                    <font color="red"> First Name is required.</font><br/>
+                                            </span>
+                                    </span>  
+                            </div>
+                            <div class="col-md-4">
+                                    <label class="col-md-6" for="lastName">Last Name:<em>*</em>:</label>
+                                    <input autocomplete="off" class="col-md-6 form-control textbox" id="lastName" type="text" required
+                                        [(ngModel)]=accountDetails.lastName name="lastName" #lastNameVar="ngModel" 
+                                        />
+                                        <span class="col-md-8" *ngIf="(lastNameVar.touched || lastNameVar.dirty) && lastNameVar.errors">
+                                                <span *ngIf="lastNameVar.errors.required">
+                                                        <font color="red"> Last Name is required.</font><br/>
+                                                </span> 
+                                            </span>   
+                            </div>
+                            <div class="col-md-4">
+                                <label class="col-md-6" for="gender">Gender:<em>*</em>:</label>
+                                <select class="col-md-6 form-control textbox" id="gender">
+                                    <option >
+                                        Male
+                                    </option>
+                                    <option>
+                                        Female
+                                   </option>
+                                </select>
+                            </div>
+                        </div>
+                    
+                </div>
+            </form>
+        </div>
+        <div class="panel-footer">
+            <div class="row" style="margin-left: 0px !important;">
+                <div>
+                    <span>
+                        <a class="btn btn-sm navbar-btn btn-primary" title="Cancel" style="font-size:1em !important;width:80px;margin-right:10px;"
+                            [routerLink]="['/profile/users']">
+                            Cancel
+                        </a>
+                    </span>
+                    <span>
+                        <button class="btn btn-sm navbar-btn btn-primary" type="button" title="Save Segment" (click)="saveAccount()" style="font-size:1em !important;width:80px;margin-right:10px;"
+                        [disabled]='!accountForm.valid'>
+                            Save
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

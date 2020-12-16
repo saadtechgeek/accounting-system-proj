@@ -1,0 +1,125 @@
+div.tableframe{
+  margin:0 12px;
+}
+
+.container-fluid {
+  display:flex;
+  flex-wrap:wrap;
+  margin-right:-15px;
+  margin-left:-15px;
+  padding-left:15px;
+  padding-right:15px;
+}
+
+.textbox{
+  max-width:75% !important;
+  border:1px solid #004f79;
+  border-radius:3px;
+  color:black;
+  background:#fff;
+  box-shadow:inset 0px 1px 2px 0px rgba(0,0,0,.4);
+  padding:5px 10px!important;
+  font-size:1em;
+  font-family:'Lato', sans-serif;
+  //font-weight:bold;
+  margin:0 0 12px 0;
+  min-width:180px;
+  height:30px;
+}
+
+.textArea{
+  height:auto;
+}
+
+.label {
+  font-size:0.85em !important;
+  letter-spacing:0.1em;
+  //line-height:18px;
+  padding:0;
+  text-transform:uppercase;
+  //margin-top:15px;
+}
+
+form label em, em.required-key {
+  text-transform:none;
+  color:#A91010;
+  margin-right:2px;
+  font-size:1.3em;
+  font-weight:bold;
+  font-style:normal;
+}
+
+
+
+
+body .md-inputfield > label {
+  color: #999;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 1px;
+  transition: 0.3s ease all;
+  -moz-transition: 0.3s ease all;
+  -webkit-transition: 0.3s ease all;
+}
+
+body .md-inputfield input:focus ~ label,
+body .md-inputfield input.ui-state-filled ~ label,
+body .md-inputfield .ui-inputwrapper-focus ~ label,
+body .md-inputfield .ui-inputwrapper-filled ~ label {
+  top: -20px;
+  font-size: 12px;
+  color: #006398;;
+}
+
+body .md-inputfield .input:-webkit-autofill ~ label {
+  top: -20px;
+  font-size: 12px;
+  color: #006398;;
+}
+
+body .md-inputfield input.ng-dirty.ng-invalid ~ label {
+  color: #e62a10;
+}
+
+body .md-inputfield .ui-message.ui-messages-error {
+  background-color: transparent;
+  border: 0 none;
+  margin: 0px;
+  color: #e62a10;
+  font-size: .75em;
+}
+
+body .md-inputfield.md-inputfield-fill input {
+  background-color: #f7f7f7;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 4px;
+}
+
+body .md-inputfield.md-inputfield-fill label {
+  top: 2px;
+}
+
+body .md-inputfield.md-inputfield-box input {
+  background-color: #f7f7f7;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 24px;
+}
+
+body .md-inputfield.md-inputfield-box label {
+  top: 23px;
+}
+
+body .md-inputfield.md-inputfield-box input:focus ~ label,
+body .md-inputfield.md-inputfield-box input.ui-state-filled ~ label,
+body .md-inputfield.md-inputfield-box .ui-inputwrapper-focus ~ label,
+body .md-inputfield.md-inputfield-box .ui-inputwrapper-filled ~ label {
+  top: 1px;
+}
+
+body .md-inputfield.md-inputfield-box .input:-webkit-autofill ~ label {
+  top: 1px;
+}

@@ -1,0 +1,90 @@
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  //height: 100px;
+  //z-index: 1000;
+}
+
+/*body > .header .navbar {
+  margin-bottom:0;
+}*/
+
+/******  3.HEADER STYLES   ******/
+
+/*body > .header {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+  background: #313E4B; }
+
+body > .header .navbar {
+  margin-bottom: 0; }
+
+body > .header .navbar .nav > li > a > .label {
+  border-radius: 50%;
+  position: absolute;
+  top: 12px;
+  right: 9px;
+  font-size: 8px;
+  font-weight: normal;
+  width: 13px;
+  height: 13px;
+  line-height: 1.0em;
+  text-align: center;
+  padding: 2px; }
+
+body > .header .navbar .nav > li > a:hover > .label {
+  top: 3px; }
+
+body > .header .logo {
+  display: block;
+  float: left;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 10px;
+  text-align: center;
+  width: 241px; }
+
+body > .header .logo .icon {
+  margin-right: 10px; }
+
+body > .header .navbar .sidebar-toggle {
+  float: left;
+  color: #fff;
+  font-size: 23px;
+  font-weight: bold;
+  margin-left: 10px; }
+
+  @media (max-width: 767px) {
+    .navbar-nav .user-menu .dropdown-menu > li > a {
+      padding: 3px 20px; }
+    body > .header .navbar {
+      padding-left: 20px;
+      padding-right: 20px; } }
+
+
+      @media screen and (max-width: 560px) {
+        body > .header {
+          position: relative; }
+        body > .header .logo,
+        body > .header .navbar {
+          width: 100%;
+          float: none;
+          position: relative;
+          height: initial; }
+        body > .header .navbar {
+          margin: 0; }
+        body.fixed > .header {
+          position: fixed; }
+        body.fixed > .wrapper,
+        body.fixed .sidebar-offcanvas {
+          margin-top: 100px; }
+        body.nav-fixed #right {
+          top: 60px; }
+        body.nav-fixed #menu {
+          position: relative;
+          top: 80px; } }
+      */

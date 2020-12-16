@@ -1,0 +1,31 @@
+{
+    "$schema": "../../core/json-server/schema.json",
+    "root": "/app/json-data",
+    "dictionaries": [
+        {
+            "name": "creditQuality",
+            "values": [
+                "Pass",
+                "Special Mention",
+                "Substandard",
+                "Doubtful",
+                "Loss"
+            ]
+        },
+        {
+            "name": "YesNo",
+            "values": [
+                "Yes",
+                "No"
+            ]
+        }
+    ],
+    "resources": [
+        {
+            "path": "/global/test",
+            "jsonDataFile": "/global/global-test-response.json",
+            "delay": 2000,
+            "overrideController": true
+        }
+    ]
+}

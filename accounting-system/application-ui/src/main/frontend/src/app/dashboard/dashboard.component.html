@@ -1,0 +1,23 @@
+<div class="ui-g">
+
+  <!-- uses chart.js library for using charts-->
+  <at-statistic label="Number of Users" value="5" icon="far fa-address-card" colour="#00ACAC" class="ui-g-12 ui-md-6 ui-lg-3"></at-statistic>
+
+
+  <at-statistic label="Number of Account" value="700" icon="fa-users" colour="#2F8EE5" class="ui-g-12 ui-md-6 ui-lg-3"></at-statistic>
+
+
+  <at-statistic label="Number of Saving Account" value="20" icon="fab fa-leanpub" colour="#6C76AF" class="ui-g-12 ui-md-6 ui-lg-3"></at-statistic>
+
+
+  <at-statistic label="Number of Current Account" value="100" icon="fa-area-chart" colour="#EFA64C" class="ui-g-12 ui-md-6 ui-lg-3"></at-statistic>
+
+
+</div>
+
+<div class="ui-g">
+  <p-panel header="Current and Saving (pie)" class="ui-g-12 ui-md-6">
+    <p-chart type="pie" [data]="currentPerSavingChartData"
+    [options]="chartOptions"></p-chart>
+  </p-panel>
+</div>
